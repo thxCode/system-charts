@@ -27,6 +27,7 @@ operator:
   ## Already exist ServiceAccount
   ##
   serviceAccountName: ""
+  denyNamespaces: []
 
 exporter-coredns:
   enabled: false

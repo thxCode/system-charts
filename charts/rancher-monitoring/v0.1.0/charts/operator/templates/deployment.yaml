@@ -51,6 +51,9 @@ spec:
             - --crd-apigroup={{ template "operator_api_group" . }}
             - --manage-crds={{ .Values.manageCRDs }}
             - --with-validation={{ .Values.withValidation }}
+            {{- if .Values.denyNamespaces }}
+            - --deny-namespaces={{ .Values.denyNamespaces | join "," }}
+            {{- end }}
           ports:
           - containerPort: 8080
             name: http
