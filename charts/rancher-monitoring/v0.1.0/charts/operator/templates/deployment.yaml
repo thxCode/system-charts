@@ -51,8 +51,11 @@ spec:
             - --crd-apigroup={{ template "operator_api_group" . }}
             - --manage-crds={{ .Values.manageCRDs }}
             - --with-validation={{ .Values.withValidation }}
-            {{- if .Values.denyNamespaces }}
-            - --deny-namespaces={{ .Values.denyNamespaces | join "," }}
+            {{- if .Values.prometheusInstanceNamespaces }}
+            - --prometheus-instance-namespaces={{ .Values.prometheusInstanceNamespaces | join "," }}
+            {{- end }}
+            {{- if .Values.alertmanagerInstanceNamespaces }}
+            - --alertmanager-instance-namespaces={{ .Values.alertmanagerInstanceNamespaces | join "," }}
             {{- end }}
           ports:
           - containerPort: 8080
