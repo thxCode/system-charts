@@ -14,16 +14,16 @@ jobs:
 
       - name: Validate all charts have a questions file
         run: >
-          charts_dirs=$(find charts -type d -mindepth 2 -maxdepth 2)
+          chart_dirs=$(find charts -type d -mindepth 2 -maxdepth 2)
 
           for chart in $chart_dirs; do
-            if [ ! $chart/questions.yaml ] && [ ! $chart/questions.yml ]; then
+            if [[ ! -f $chart/questions.yaml ]] && [[ ! -f $chart/questions.yml ]]; then
               echo "$chart is missing a questions chart file"
               exit 1
             fi
           done
 
-      - name: Validate all questions file have a 'rancher_min_version' set
+      - name: Validate all questions files have a `rancher_min_version` set
         run: >
           questions_files=$(find charts -type f -name questions.y\*ml)
 
